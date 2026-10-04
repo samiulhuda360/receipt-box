@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+.data/
+cdk.out/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+playwright-report/
+test-results/
+eval/out/
+*.traineddata
+.DS_Store
+
+.data-*.log

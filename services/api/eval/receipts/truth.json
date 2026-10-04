@@ -1,0 +1,242 @@
+[
+ {
+  "file": "01.png",
+  "layout": "thermal",
+  "vendor": "Kauri Hardware",
+  "date": "2026-06-13",
+  "totalCents": 29285,
+  "gstCents": 3820
+ },
+ {
+  "file": "02.png",
+  "layout": "cafe",
+  "vendor": "Harbourside Fuel",
+  "date": "2026-08-21",
+  "totalCents": 25325,
+  "gstCents": 3303
+ },
+ {
+  "file": "03.png",
+  "layout": "invoice",
+  "vendor": "Tūī Stationery",
+  "date": "2026-07-16",
+  "totalCents": 13228,
+  "gstCents": 1725
+ },
+ {
+  "file": "04.jpg",
+  "layout": "thermal",
+  "vendor": "Pōhutukawa Café",
+  "date": "2026-09-13",
+  "totalCents": 14570,
+  "gstCents": 1900
+ },
+ {
+  "file": "05.png",
+  "layout": "cafe",
+  "vendor": "Southern Cross Pharmacy",
+  "date": "2026-03-11",
+  "totalCents": 19446,
+  "gstCents": 2536
+ },
+ {
+  "file": "06.png",
+  "layout": "invoice",
+  "vendor": "Ruru Tech Supplies",
+  "date": "2026-02-25",
+  "totalCents": 20776,
+  "gstCents": 2710
+ },
+ {
+  "file": "07.png",
+  "layout": "thermal",
+  "vendor": "Matai Motors",
+  "date": "2026-02-03",
+  "totalCents": 20149,
+  "gstCents": 2628
+ },
+ {
+  "file": "08.jpg",
+  "layout": "cafe",
+  "vendor": "Kea Office Co",
+  "date": "2026-07-22",
+  "totalCents": 31071,
+  "gstCents": 4053
+ },
+ {
+  "file": "09.png",
+  "layout": "invoice",
+  "vendor": "Fantail Printing",
+  "date": "2026-04-25",
+  "totalCents": 5365,
+  "gstCents": 700
+ },
+ {
+  "file": "10.png",
+  "layout": "thermal",
+  "vendor": "Rimu Timber Yard",
+  "date": "2026-07-01",
+  "totalCents": 7981,
+  "gstCents": 1041
+ },
+ {
+  "file": "11.png",
+  "layout": "cafe",
+  "vendor": "Kauri Hardware",
+  "date": "2026-01-22",
+  "totalCents": 9206,
+  "gstCents": 1201
+ },
+ {
+  "file": "12.jpg",
+  "layout": "invoice",
+  "vendor": "Harbourside Fuel",
+  "date": "2026-01-22",
+  "totalCents": 24636,
+  "gstCents": 3213
+ },
+ {
+  "file": "13.png",
+  "layout": "thermal",
+  "vendor": "Tūī Stationery",
+  "date": "2026-03-17",
+  "totalCents": 33734,
+  "gstCents": 4400
+ },
+ {
+  "file": "14.png",
+  "layout": "cafe",
+  "vendor": "Pōhutukawa Café",
+  "date": "2026-04-09",
+  "totalCents": 23855,
+  "gstCents": 3112
+ },
+ {
+  "file": "15.png",
+  "layout": "invoice",
+  "vendor": "Southern Cross Pharmacy",
+  "date": "2026-06-07",
+  "totalCents": 14617,
+  "gstCents": 1907
+ },
+ {
+  "file": "16.jpg",
+  "layout": "thermal",
+  "vendor": "Ruru Tech Supplies",
+  "date": "2026-05-23",
+  "totalCents": 17759,
+  "gstCents": 2316
+ },
+ {
+  "file": "17.png",
+  "layout": "cafe",
+  "vendor": "Matai Motors",
+  "date": "2026-06-25",
+  "totalCents": 9209,
+  "gstCents": 1201
+ },
+ {
+  "file": "18.png",
+  "layout": "invoice",
+  "vendor": "Kea Office Co",
+  "date": "2026-06-14",
+  "totalCents": 17172,
+  "gstCents": 2240
+ },
+ {
+  "file": "19.png",
+  "layout": "thermal",
+  "vendor": "Fantail Printing",
+  "date": "2026-07-28",
+  "totalCents": 10238,
+  "gstCents": 1335
+ },
+ {
+  "file": "20.jpg",
+  "layout": "cafe",
+  "vendor": "Rimu Timber Yard",
+  "date": "2026-04-27",
+  "totalCents": 14887,
+  "gstCents": 1942
+ },
+ {
+  "file": "21.png",
+  "layout": "invoice",
+  "vendor": "Kauri Hardware",
+  "date": "2026-08-10",
+  "totalCents": 6413,
+  "gstCents": 836
+ },
+ {
+  "file": "22.png",
+  "layout": "thermal",
+  "vendor": "Harbourside Fuel",
+  "date": "2026-05-19",
+  "totalCents": 20177,
+  "gstCents": 2632
+ },
+ {
+  "file": "23.png",
+  "layout": "cafe",
+  "vendor": "Tūī Stationery",
+  "date": "2026-08-28",
+  "totalCents": 18782,
+  "gstCents": 2450
+ },
+ {
+  "file": "24.jpg",
+  "layout": "invoice",
+  "vendor": "Pōhutukawa Café",
+  "date": "2026-06-26",
+  "totalCents": 8818,
+  "gstCents": 1150
+ },
+ {
+  "file": "25.png",
+  "layout": "thermal",
+  "vendor": "Southern Cross Pharmacy",
+  "date": "2026-02-10",
+  "totalCents": 26790,
+  "gstCents": 3494
+ },
+ {
+  "file": "26.png",
+  "layout": "cafe",
+  "vendor": "Ruru Tech Supplies",
+  "date": "2026-09-01",
+  "totalCents": 20458,
+  "gstCents": 2668
+ },
+ {
+  "file": "27.png",
+  "layout": "invoice",
+  "vendor": "Matai Motors",
+  "date": "2026-07-06",
+  "totalCents": 26816,
+  "gstCents": 3498
+ },
+ {
+  "file": "28.jpg",
+  "layout": "thermal",
+  "vendor": "Kea Office Co",
+  "date": "2026-08-14",
+  "totalCents": 14630,
+  "gstCents": 1908
+ },
+ {
+  "file": "29.png",
+  "layout": "cafe",
+  "vendor": "Fantail Printing",
+  "date": "2026-04-15",
+  "totalCents": 13109,
+  "gstCents": 1710
+ },
+ {
+  "file": "30.png",
+  "layout": "invoice",
+  "vendor": "Rimu Timber Yard",
+  "date": "2026-06-06",
+  "totalCents": 7661,
+  "gstCents": 999
+ }
+]

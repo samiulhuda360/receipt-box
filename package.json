@@ -1,0 +1,46 @@
+{
+  "name": "receipt-box",
+  "private": true,
+  "description": "Receipt capture and GST-ready expense tracking for New Zealand sole traders. React + TypeScript on a serverless AWS backend.",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/shared",
+    "services/api",
+    "apps/web",
+    "infra"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,green \"npm run dev -w @receipt-box/api\" \"npm run dev -w @receipt-box/web\"",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "lint": "eslint .",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build -w @receipt-box/web",
+    "e2e": "playwright test",
+    "synth": "npm run synth -w @receipt-box/infra",
+    "eval": "npm run eval -w @receipt-box/api --"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@eslint/js": "^10.0.1",
+    "@graphql-codegen/cli": "^7.4.3",
+    "@graphql-codegen/client-preset": "^6.2.0",
+    "@graphql-codegen/typescript": "^6.1.0",
+    "@graphql-codegen/typescript-resolvers": "^6.1.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4",
+    "concurrently": "^10.0.5",
+    "eslint": "^10.12.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "graphql": "^16.14.2",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.3"
+  }
+}

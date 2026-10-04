@@ -1,0 +1,93 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, types, unit tests, build, synth
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Generated GraphQL types match the schema
+        run: npm run codegen && git diff --exit-code -- apps/web/src/gql services/api/src/generated
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: Synthesize the AWS stacks (bundles both Lambdas with esbuild)
+        working-directory: infra
+        run: npx cdk synth --quiet
+
+  e2e:
+    name: End-to-end (Playwright, real OCR)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Cache the OCR language model
+        uses: actions/cache@v4
+        with:
+          path: services/api/.data/tesseract
+          key: tesseract-eng-v7
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
+
+  deploy:
+    name: Deploy to AWS
+    needs: [check, e2e]
+    # Runs once the repository variable AWS_DEPLOY_ROLE_ARN is set (see README: Deploy).
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && vars.AWS_DEPLOY_ROLE_ARN != ''
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      id-token: write # lets GitHub mint the OIDC token that AWS exchanges for temporary credentials
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION || 'ap-southeast-2' }}
+      - name: cdk deploy
+        working-directory: infra
+        run: npx cdk deploy ReceiptBox --require-approval never --outputs-file outputs.json -c alarmEmail="${{ vars.ALARM_EMAIL }}"
+      - name: Smoke test
+        working-directory: infra
+        run: |
+          site=$(jq -r '.ReceiptBox.SiteUrl' outputs.json)
+          curl -fsS "$site/" | grep -q "<title>Receipt Box</title>"
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$site/graphql" -H 'content-type: application/json' -d '{"query":"{ inbox { id } }"}')
+          test "$code" = "401" # the API is reachable and refuses unauthenticated calls
+          echo "Deployed: $site"
