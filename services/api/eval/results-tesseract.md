@@ -11,8 +11,8 @@
 
 ## Misses
 
-| File | Expected | Read (vendor, date, total, GST) |
-|---|---|---|
+| File | Expected (vendor, date, total, GST) | Vendor read | Date read | Total read | GST read |
+|---|---|---|---|---|---|
 | 03.png | Tūī Stationery, 2026-07-16, 132.28, 17.25 | Tai Stationery | 2026-07-16 | 132.28 | 17.25 |
 | 16.jpg | Ruru Tech Supplies, 2026-05-23, 177.59, 23.16 | Ruru Tech Supplies | 2026-05-23 | 17.59 | - |
 | 19.png | Fantail Printing, 2026-07-28, 102.38, 13.35 | Fantail Printing | 2026-07-28 | 102.38 | - |

@@ -71,8 +71,8 @@ async function main() {
     "",
     "## Misses",
     "",
-    "| File | Expected | Read (vendor, date, total, GST) |",
-    "|---|---|---|",
+    "| File | Expected (vendor, date, total, GST) | Vendor read | Date read | Total read | GST read |",
+    "|---|---|---|---|---|---|",
     ...rows.filter((r) => !all(r)).map((r) => `| ${r.file} | ${r.vendor}, ${r.date}, ${(r.totalCents / 100).toFixed(2)}, ${(r.gstCents / 100).toFixed(2)} | ${r.got} |`),
     "",
   ].join("\n");
