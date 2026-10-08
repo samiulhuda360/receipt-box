@@ -1,16 +1,63 @@
 # Receipt Box
 
-Receipt Box turns receipt photos into GST-ready expense records for New Zealand sole traders: upload a photo, check the vendor, date, total and GST read from it, and export totals by category for a GST return or the tax year. It is a React + TypeScript web app on a serverless AWS back end (Lambda, API Gateway, DynamoDB, S3, Cognito and Textract) with GraphQL and REST APIs, AWS CDK infrastructure and CI, and it also runs locally without an AWS account.
-
 [![ci](https://github.com/samiulhuda360/receipt-box/actions/workflows/ci.yml/badge.svg)](https://github.com/samiulhuda360/receipt-box/actions/workflows/ci.yml)
 ![React 19](https://img.shields.io/badge/React-19-1d3b34)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-1d3b34)
 ![AWS CDK](https://img.shields.io/badge/AWS-CDK%20%7C%20Lambda%20%7C%20DynamoDB-1d3b34)
 ![License](https://img.shields.io/badge/license-MIT-1d3b34)
 
+**Snap a photo of a receipt and it fills in the shop, date, total and GST for you, then adds up what you can
+claim back at tax time.**
+
 ![Receipt Box: upload, a "to check" inbox, totals by category for the tax year, and checked receipts](docs/screenshots/receipts.png)
 
-*The receipts page: add photos, the "To check" inbox, spending and GST to claim by category for the 2026/27 tax year, and the checked receipts.*
+*The main page. Top: add receipt photos. Middle: receipts waiting for you to check. Bottom: how much you spent
+and how much GST you can claim, split by category, for the tax year.*
+
+## What it does
+
+Receipt Box is for people who run their own small business in New Zealand. You take a photo of each receipt, and
+it reads the shop name, date, total and GST (goods and services tax) for you. You glance at each one to confirm
+it, and at tax time it gives you the totals, or a spreadsheet file, ready for your GST return.
+
+## A real-life example
+
+![Slideshow: Sam adds receipt photos, checks what was read against the photo, sees the totals and downloads the spreadsheet for the GST return](docs/screenshots/story.gif)
+
+*Sam's receipts from photo to GST return, in four steps.*
+
+Sam runs Acme Plumbing on his own.
+
+- **Before:** receipts for parts, fuel and tools pile up in the van. Every two months, when his GST return is
+  due, he types each one into a spreadsheet by hand, works out the GST on each, and hopes he didn't miss or
+  mistype any. Faded or lost receipts mean GST he could have claimed back.
+- **With Receipt Box:** he photographs each receipt on his phone the day he gets it. Moments later it
+  shows up as "Check me" with the shop, date, total and GST filled in. He compares them with the photo, fixes
+  anything marked "Please check", picks a category such as "Fuel" and saves.
+- **After:** when the return is due, he picks "last two months" and sees what he spent and the GST to claim, by
+  category, then downloads the spreadsheet. In tests on 30 sample receipts it read the date correctly every
+  time, the total 97% of the time and the GST 93% of the time, in about 0.2 seconds per receipt. Because Sam
+  checks every receipt before it counts, the rare misread is caught before it reaches his return.
+
+## How you would use it
+
+1. Open Receipt Box in your browser or on your phone and sign in.
+2. Press **Choose photos** (or drop photos onto the page). On a phone you can take the photo straight away.
+3. Wait a moment while each receipt changes from **Uploading** to **Reading** to **Check me**.
+4. Open a receipt, compare the filled-in details with the photo, fix anything marked "Please check", choose a
+   category and press **Looks right, save**.
+5. To see your totals, pick a period, such as this month or the tax year, on the receipts page.
+6. For your GST return, go to **Export**, pick the period and press **Download CSV** to get a spreadsheet file.
+
+## In technical terms
+
+Receipt Box turns receipt photos into GST-ready expense records for New Zealand sole traders: upload a photo,
+check the vendor, date, total and GST read from it, and export totals by category for a GST return or the tax
+year. It is a React + TypeScript web app on a serverless AWS back end (Amazon's cloud, where the code runs only
+when needed and there are no servers to manage): Lambda (the code), API Gateway (the front door for requests),
+DynamoDB (the database), S3 (photo storage), Cognito (sign-in) and Textract (Amazon's receipt-reading AI). It
+offers GraphQL and REST APIs (ways for other programs to talk to it), AWS CDK infrastructure (the cloud setup
+written as code) and CI (automatic tests on every change), and it also runs locally without an AWS account.
 
 ## Key features
 
