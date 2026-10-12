@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { dateFrom, parseReceiptText } from "../src/extract/parse";
 
 const HARDWARE = `
-MITRE 10 MEGA
+ACME HARDWARE MEGA
 123 Great South Road, Penrose
 Ph 09 555 0101   GST No 123-456-789
 TAX INVOICE
@@ -31,7 +31,7 @@ Change 6.50
 describe("parseReceiptText", () => {
   it("reads a hardware store receipt", () => {
     const r = parseReceiptText(HARDWARE);
-    expect(r.vendor?.value).toBe("Mitre 10 Mega");
+    expect(r.vendor?.value).toBe("Acme Hardware Mega");
     expect(r.date?.value).toBe("2026-09-12");
     expect(r.total?.value).toBe("42.40");
     expect(r.gst?.value).toBe("5.53");

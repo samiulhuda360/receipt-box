@@ -15,7 +15,7 @@ const record = (over: Partial<ReceiptRecord> = {}): ReceiptRecord => ({
   fileName: "r.jpg",
   contentType: "image/jpeg",
   objectKey: "uploads/u1/11111111-1111-1111-1111-111111111111/r.jpg",
-  vendor: "Z Energy",
+  vendor: "Acme Fuel",
   date: "2026-09-10",
   totalCents: 8050,
   gstCents: 1050,
@@ -75,13 +75,13 @@ describe("Textract AnalyzeExpense", () => {
 
   it("keeps the most confident field of each type and normalises values", () => {
     const out = mapExpenseFields([
-      field("VENDOR_NAME", "BUNNINGS WAREHOUSE\nMt Wellington", 91),
-      field("NAME", "Bunnings", 60),
+      field("VENDOR_NAME", "ACME BUILDERS SUPPLY\nMt Wellington", 91),
+      field("NAME", "Acme Builders", 60),
       field("INVOICE_RECEIPT_DATE", "05/09/26", 95),
       field("TOTAL", "$1,150.00", 99),
       field("TAX", "GST $150.00", 97),
     ]);
-    expect(out.vendor).toEqual({ value: "BUNNINGS WAREHOUSE", confidence: 0.91 });
+    expect(out.vendor).toEqual({ value: "ACME BUILDERS SUPPLY", confidence: 0.91 });
     expect(out.date).toEqual({ value: "2026-09-05", confidence: 0.85 }); // 05/09 could be 9 May: flagged
     expect(out.total?.value).toBe("1150.00");
     expect(out.gst?.value).toBe("150.00");

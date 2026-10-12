@@ -58,7 +58,7 @@ describe("periods", () => {
 });
 
 describe("validation", () => {
-  const ok = { vendor: "Mitre 10", date: "2026-09-12", totalCents: 11500, gstCents: 1500, category: "TOOLS" as const, notes: "" };
+  const ok = { vendor: "Acme Hardware", date: "2026-09-12", totalCents: 11500, gstCents: 1500, category: "TOOLS" as const, notes: "" };
 
   it("accepts a normal receipt and a GST-free one", () => {
     expect(receiptInputSchema.safeParse(ok).success).toBe(true);

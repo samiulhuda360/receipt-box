@@ -12,8 +12,8 @@ import type { ReceiptFieldsFragment } from "../gql/graphql";
 const receipt = (over: Partial<ReceiptFieldsFragment> = {}): ReceiptFieldsFragment => ({
   id: "r1",
   status: "NEEDS_REVIEW",
-  fileName: "mitre10.jpg",
-  vendor: "Mitre 10",
+  fileName: "acme-hardware.jpg",
+  vendor: "Acme Hardware",
   date: "2026-09-12",
   totalCents: 4240,
   gstCents: null,
@@ -26,7 +26,7 @@ const receipt = (over: Partial<ReceiptFieldsFragment> = {}): ReceiptFieldsFragme
   extraction: {
     engine: "tesseract",
     ms: 2100,
-    vendor: { value: "Mitre 10", confidence: 0.91 },
+    vendor: { value: "Acme Hardware", confidence: 0.91 },
     date: { value: "2026-09-12", confidence: 0.62 },
     total: { value: "42.40", confidence: 0.88 },
     gst: null,
@@ -35,7 +35,7 @@ const receipt = (over: Partial<ReceiptFieldsFragment> = {}): ReceiptFieldsFragme
 });
 
 describe("toInput (form -> API)", () => {
-  const base = { vendor: "Z Energy", date: "2026-09-01", total: "80.50", gst: "10.50", category: "VEHICLE" as const, notes: "" };
+  const base = { vendor: "Acme Fuel", date: "2026-09-01", total: "80.50", gst: "10.50", category: "VEHICLE" as const, notes: "" };
 
   it("turns dollars into cents and treats an empty GST as zero", () => {
     expect(toInput(base).input).toMatchObject({ totalCents: 8050, gstCents: 1050 });
@@ -54,7 +54,7 @@ describe("ReceiptForm", () => {
     expect(screen.getByText("Read from the photo, 91% sure")).toBeInTheDocument();
     expect(screen.getByText("Read from the photo, 62% sure. Please check.")).toBeInTheDocument();
     expect(screen.getByText("Not found on the photo")).toBeInTheDocument(); // GST
-    expect(screen.getByLabelText("Vendor")).toHaveValue("Mitre 10");
+    expect(screen.getByLabelText("Vendor")).toHaveValue("Acme Hardware");
   });
 
   it("fills GST from the total and saves cents", async () => {
@@ -64,7 +64,7 @@ describe("ReceiptForm", () => {
     expect(screen.getByLabelText("GST ($)")).toHaveValue("5.53");
     expect(screen.getByText("Excl GST: $36.87")).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Looks right, save" }));
-    expect(onSave).toHaveBeenCalledWith({ vendor: "Mitre 10", date: "2026-09-12", totalCents: 4240, gstCents: 553, category: "TOOLS", notes: "" });
+    expect(onSave).toHaveBeenCalledWith({ vendor: "Acme Hardware", date: "2026-09-12", totalCents: 4240, gstCents: 553, category: "TOOLS", notes: "" });
   });
 
   it("blocks bad input before it reaches the server", async () => {
@@ -120,7 +120,7 @@ describe("receipt lists", () => {
         <InboxList receipts={[receipt(), receipt({ id: "r2", status: "PROCESSING", vendor: null, fileName: "new.png" })]} />
       </MemoryRouter>,
     );
-    expect(screen.getByRole("link", { name: "Check Mitre 10" })).toHaveAttribute("href", "/receipts/r1");
+    expect(screen.getByRole("link", { name: "Check Acme Hardware" })).toHaveAttribute("href", "/receipts/r1");
     const busy = screen.getByText("new.png").closest("li")!;
     expect(within(busy).getByText("Reading")).toBeInTheDocument();
     expect(within(busy).queryByRole("link")).toBeNull();
@@ -132,7 +132,7 @@ describe("receipt lists", () => {
         <ReceiptsTable receipts={[receipt({ status: "REVIEWED", totalCents: 123456, gstCents: 16103 })]} />
       </MemoryRouter>,
     );
-    const row = screen.getByRole("row", { name: /Mitre 10/ });
+    const row = screen.getByRole("row", { name: /Acme Hardware/ });
     expect(row).toHaveTextContent("$1,234.56");
     expect(row).toHaveTextContent("$161.03");
     expect(row).toHaveTextContent("Tools and equipment");

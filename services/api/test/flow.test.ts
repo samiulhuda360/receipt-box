@@ -27,7 +27,7 @@ class FakeExtractor implements Extractor {
 const READ: Extraction = {
   engine: "fake",
   ms: 5,
-  vendor: { value: "Placemakers", confidence: 0.9 },
+  vendor: { value: "Acme Timber", confidence: 0.9 },
   date: { value: "2026-09-15", confidence: 0.9 },
   total: { value: "115.00", confidence: 0.92 },
   gst: { value: "15.00", confidence: 0.95 },
@@ -61,7 +61,7 @@ function setup(extractor: Extractor = new FakeExtractor(() => READ)) {
 }
 
 const SAVE = `mutation($id: ID!, $input: ReceiptInput!) { saveReceipt(id: $id, input: $input) { id status vendor totalCents } }`;
-const input = { vendor: "Placemakers", date: "2026-09-15", totalCents: 11500, gstCents: 1500, category: "TOOLS" };
+const input = { vendor: "Acme Timber", date: "2026-09-15", totalCents: 11500, gstCents: 1500, category: "TOOLS" };
 
 describe("the receipt journey", () => {
   let t: ReturnType<typeof setup>;
@@ -75,7 +75,7 @@ describe("the receipt journey", () => {
 
     expect(await processUpload(t.deps, key)).toBe("processed");
     const inbox = (await t.gql(`{ inbox { status vendor date totalCents gstCents imageUrl extraction { engine total { value confidence } } } }`)).data!.inbox;
-    expect(inbox[0]).toMatchObject({ status: "NEEDS_REVIEW", vendor: "Placemakers", totalCents: 11500, gstCents: 1500, extraction: { engine: "fake" } });
+    expect(inbox[0]).toMatchObject({ status: "NEEDS_REVIEW", vendor: "Acme Timber", totalCents: 11500, gstCents: 1500, extraction: { engine: "fake" } });
     expect(inbox[0].imageUrl).toContain("/local-blob/");
 
     const saved = await t.gql(SAVE, { id: receiptId, input });
@@ -89,7 +89,7 @@ describe("the receipt journey", () => {
 
     const csv = await t.app.request(`/api/export.csv?from=${period.from}&to=${period.to}`, { headers: t.as("alice") });
     expect(csv.headers.get("content-type")).toContain("text/csv");
-    expect(await csv.text()).toContain(`2026-09-15,Placemakers,Tools and equipment,115.00,15.00,100.00,,${receiptId}`);
+    expect(await csv.text()).toContain(`2026-09-15,Acme Timber,Tools and equipment,115.00,15.00,100.00,,${receiptId}`);
   });
 
   it("returns field-level errors the form can show", async () => {
