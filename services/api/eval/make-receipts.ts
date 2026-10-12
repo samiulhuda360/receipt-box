@@ -20,7 +20,7 @@ const VENDORS = [
   "Harbourside Fuel",
   "Tūī Stationery",
   "Pōhutukawa Café",
-  "Southern Cross Pharmacy",
+  "Acme Corner Pharmacy",
   "Ruru Tech Supplies",
   "Matai Motors",
   "Kea Office Co",

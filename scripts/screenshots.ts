@@ -13,7 +13,7 @@ const CATEGORY: Record<string, string> = {
   "Kauri Hardware": "Tools and equipment",
   "Harbourside Fuel": "Vehicle and fuel",
   "Pōhutukawa Café": "Meals and entertainment",
-  "Southern Cross Pharmacy": "Other",
+  "Acme Corner Pharmacy": "Other",
   "Ruru Tech Supplies": "Office and supplies",
   "Matai Motors": "Vehicle and fuel",
   "Kea Office Co": "Office and supplies",

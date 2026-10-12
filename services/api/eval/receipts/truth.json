@@ -34,7 +34,7 @@
  {
   "file": "05.png",
   "layout": "cafe",
-  "vendor": "Southern Cross Pharmacy",
+  "vendor": "Acme Corner Pharmacy",
   "date": "2026-03-11",
   "totalCents": 19446,
   "gstCents": 2536
@@ -114,7 +114,7 @@
  {
   "file": "15.png",
   "layout": "invoice",
-  "vendor": "Southern Cross Pharmacy",
+  "vendor": "Acme Corner Pharmacy",
   "date": "2026-06-07",
   "totalCents": 14617,
   "gstCents": 1907
@@ -194,7 +194,7 @@
  {
   "file": "25.png",
   "layout": "thermal",
-  "vendor": "Southern Cross Pharmacy",
+  "vendor": "Acme Corner Pharmacy",
   "date": "2026-02-10",
   "totalCents": 26790,
   "gstCents": 3494
